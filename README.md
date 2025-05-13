@@ -14,6 +14,17 @@ Monitor and manage Windows server processes using PowerShell.
 - Windows Server (any recent version)
 - PowerShell 7.5.1 or later
 
+## Install
+1. Clone this repository.
+2. Open PowerShell and navigate to the project directory.
+3. Run install.sh as Administrator
+
+   ### install Steps
+   The script will perform the following:
+   - Copy the Monitor_Process script to C:\Windows\scripts
+   - Copy the supporting packages to the same folder
+   - Create a scheduled task to run on boot as system
+
 ## Usage
 
 1. Clone this repository.
@@ -23,5 +34,24 @@ Monitor and manage Windows server processes using PowerShell.
    ```powershell
    .\Monitor_Process.ps
    ```
-   Or, set using task scheduler. Start on boot, and then manually start the process
 
+   In Monitor_process.ps1 locate the SMTP block and fill in your required details
+   ```
+   # SMTP Settings
+   $smtpServer = "" # Required
+   $smtpPort = "" # Required
+   $smtpUser = "" # Required
+   $smtpPass = "" # Required
+   $smtpFrom = "" # Required
+   $smtpTo = "" # Required
+   ```
+
+   Additionally locate the 'Services to watch' block and add the service names needed.
+   ```
+   # Services to watch (Add in the format below)
+   $servicesToWatch = @{
+      "wuauserv"  = "Windows Update"
+      "Spooler"   = "Print Spooler"
+      "WinDefend" = "Microsoft Defender Antivirus"
+   }
+   ```

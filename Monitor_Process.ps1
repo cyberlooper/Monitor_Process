@@ -1,19 +1,29 @@
 # Load MimeKit and MailKit if not already loaded
 
-
+if ((test-path c:\windows\scripts) -eq $false) {
+        if ((test-path c:\windows\scripts\packages) -eq $false) {
+            write-host "No packages directory found. Run install.ps1 as admin first" 
+        }
+    }
 if (-not ([AppDomain]::CurrentDomain.GetAssemblies() | Where-Object { $_.FullName -match 'MimeKit' })) {
-    if ((test-path c:\windows\scripts) -eq $false) {
-        new-item -ItemType Directory c:\windows\scripts
+    try {
+        
+    Add-Type -Path "$($psscriptroot)\packages\mimekit\3.5.0\lib\netstandard2.0\MimeKit.dll"
     }
-    copy-item ./packages/Mimekit/* c:\windows\scripts
-    Add-Type -Path "$($env:USERPROFILE)\.nuget\packages\mimekit\3.5.0\lib\netstandard2.0\MimeKit.dll"
+    catch {
+        write-host Error loading
+        write-host $_.Exception
+    }
 }
+
 if (-not ([AppDomain]::CurrentDomain.GetAssemblies() | Where-Object { $_.FullName -match 'MailKit' })) {
-    if ((test-path c:\windows\scripts) -eq $false) {
-        new-item -ItemType Directory c:\windows\scripts
+    try {
+    Add-Type -Path "$($psscriptroot)\packages\mailkit\3.5.0\lib\netstandard2.0\MailKit.dll"
     }
-    copy-item ./Mailkit.dll c:\windows\scripts
-    Add-Type -Path "$($env:USERPROFILE)\.nuget\packages\mailkit\3.5.0\lib\netstandard2.0\MailKit.dll"
+    catch {
+        write-host Error loading
+        write-host $_.Exception
+    }
 }
 
 # Services to watch (Add in the format below)
