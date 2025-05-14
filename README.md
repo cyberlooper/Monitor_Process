@@ -12,7 +12,7 @@ Monitor and manage Windows server processes using PowerShell.
 ## Requirements
 
 - Windows Server (any recent version)
-- PowerShell 7.5.1 or later
+- [Powershell 7.5 or Later](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows?view=powershell-7.5)
 
 ## Install
 1. Clone this repository.
@@ -27,9 +27,7 @@ Monitor and manage Windows server processes using PowerShell.
 
 ## Usage
 
-1. Clone this repository.
-2. Open PowerShell and navigate to the project directory.
-3. Run the script:
+1. Run the script:
 
    ```powershell
    .\Monitor_Process.ps

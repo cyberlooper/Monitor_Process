@@ -1,3 +1,7 @@
+#Requires -RunAsAdministrator
+#Requires -PSEdition Core
+#requires -version 7.5
+
 # Installer script for Monitor_Process
 
 $destDir = "C:\Windows\scripts"

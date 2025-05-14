@@ -1,3 +1,6 @@
+#Requires -PSEdition Core
+#requires -version 7.5
+
 # Load MimeKit and MailKit if not already loaded
 
 if ((test-path c:\windows\scripts) -eq $false) {
